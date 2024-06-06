@@ -29,6 +29,10 @@ function refreshWeather(response) {
   let timeElement = document.querySelector("#time");
   timeElement.innerHTML = formatDate(date);
 
+  //refresh the weather icon
+  let iconElement = document.querySelector("#icon");
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" alt="" class="weather-app-icon" />`;
+
   console.log(response.data);
 }
 
@@ -80,7 +84,7 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
-//submit form
+//Submit form
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
