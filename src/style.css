@@ -91,24 +91,27 @@ main {
   text-align: center;
   font-size: 13px;
   color: black;
-}
-
-.row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .weather-forecast-date {
   font-size: 16px;
-  opacity: 0.6;
+  opacity: 0.55;
+  color: black;
+}
+
+.weather-forecast-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 30px;
+  text-align: center;
+  margin: 10px 0 10px 0;
 }
 
 .weather-forecast-temperatures {
   font-size: 13px;
-}
-
-.weather-forecast-temperature-min {
-  opacity: 0.6;
+  color: purple;
 }
 
 footer {
