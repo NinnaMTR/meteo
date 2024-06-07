@@ -34,6 +34,9 @@ function refreshWeather(response) {
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" alt="" class="weather-app-icon" />`;
 
   console.log(response.data);
+
+  //get forecast for the city
+  getForecast(response.data.city);
 }
 
 //Function for date format
@@ -65,7 +68,7 @@ function formatDate(date) {
   return `${day} ${hour}:${minute}`;
 }
 
-//API function
+//API function for current weather
 function searchCity(city) {
   let apiKey = "390db6dco38711524t5d45ba8dc8afff";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&unit=metric`;
@@ -84,8 +87,27 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
+//Submit form
+let searchFormElement = document.querySelector("#search-form");
+searchFormElement.addEventListener("submit", handleSearchSubmit);
+
+//First search for Lisbon :)
+searchCity("Lisbon");
+
+//---------------------------------------------------------------
+
+//API function for forecast weather
+function getForecast(city) {
+  let apiKey = "390db6dco38711524t5d45ba8dc8afff";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&unit=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 //Forecast function
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
+
   let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   let forecastHTML = "";
@@ -118,20 +140,10 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
-//---------------------------------------------------------------
-
-//Submit form
-let searchFormElement = document.querySelector("#search-form");
-searchFormElement.addEventListener("submit", handleSearchSubmit);
-
-//---------------------------------------------------------------
-
-//First search for Lisbon :)
-searchCity("Lisbon");
-
-//---------------------------------------------------------------
-
 //Forecast
 displayForecast();
+
+//First search for Lisbon :)
+getForecast("Lisbon");
 
 //---------------------------------------------------------------
