@@ -96,6 +96,17 @@ searchCity("Lisbon");
 
 //---------------------------------------------------------------
 
+//Function to get the day of forecast
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  return days[date.getDay()];
+}
+
+//---------------------------------------------------------------
+
 //API function for forecast weather
 function getForecast(city) {
   let apiKey = "390db6dco38711524t5d45ba8dc8afff";
@@ -106,34 +117,36 @@ function getForecast(city) {
 
 //Forecast function
 function displayForecast(response) {
-  console.log(response.data);
-
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
   let forecastHTML = "";
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="weather-forecast-day">
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="weather-forecast-day">
 
-        <div class="weather-forecast-date">${day}</div>
+        <div class="weather-forecast-date">${formatDay(day.time)}</div>
 
-        <div class="weather-forecast-icon">☀️</div>
-              
+        <div>
+          <img src="${
+            day.condition.icon_url
+          }" alt="" class="weather-forecast-icon"/>
+        </div>
+                     
         <div class="weather-forecast-temperatures">
             <span class="weather-forecast-temperature-max">
                 <strong>
-                  18º
+                  ${Math.round(day.temperature.maximum)}º
                 </strong>
             </span>
 
             <span class="weather-forecast-temperature-min">
-                  12º
+                  ${Math.round(day.temperature.minimum)}º
             </span>
          </div>
 
       </div>`;
+    }
   });
 
   let forecastElement = document.querySelector("#forecast");
