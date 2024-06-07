@@ -11,7 +11,7 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <title>Meteo App</title>
+    <title>Meteo App Forecast</title>
   </head>
   <body>
     <div class="weatherApp">
@@ -47,6 +47,24 @@
             <div class="weather-app-temperature-value" id="temperature"></div>
 
             <div class="weather-app-temperature-unit">°C</div>
+          </div>
+        </div>
+
+        <div class="weather-forecast">
+          <div class="row">
+            <div class="col-2">
+              <div class="weather-forecast-date">Thu</div>
+              <img
+                src="https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/icons/logo_16x16.png"
+                alt=""
+                width="36"
+              />
+              <br />
+              <div class="weather-forecast-temperatures">
+                <span class="weather-forecast-temperature-max">18º</span>
+                <span class="weather-forecast-temperature-min">12º</span>
+              </div>
+            </div>
           </div>
         </div>
       </main>
