@@ -28,6 +28,7 @@ function refreshWeather(response) {
   let date = new Date(response.data.time * 1000);
   let timeElement = document.querySelector("#time");
   timeElement.innerHTML = formatDate(date);
+  console.log(date);
 
   //refresh the weather icon
   let iconElement = document.querySelector("#icon");
@@ -91,8 +92,8 @@ function handleSearchSubmit(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-//First search for Lisbon :)
-searchCity("Lisbon");
+//First search for Algarve :)
+searchCity("Algarve");
 
 //---------------------------------------------------------------
 
@@ -156,7 +157,7 @@ function displayForecast(response) {
 //Forecast
 displayForecast();
 
-//First search for Lisbon :)
-getForecast("Lisbon");
+//First search for Algarve :)
+getForecast("Algarve");
 
 //---------------------------------------------------------------
