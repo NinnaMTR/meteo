@@ -101,7 +101,7 @@ searchCity("Algarve");
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
 
-  let shortdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  let shortdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return shortdays[date.getDay()];
 }
